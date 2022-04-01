@@ -1,10 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import Appointment from './components/Appointment';
-//import { createStackNavigator } from 'react-navigation'
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
-export default function App() {
-  return (
+function HomeScreen() {
+  return(
     <View style={styles.container}>
       {/* Title for upcoming appointments */}
       <View style={styles.upcomingWrapper}>
@@ -33,13 +35,63 @@ export default function App() {
   );
 }
 
+function BookAppointment() {
+  return(
+    <View style={styles.container}>
+      <Text>Book Your Appointment</Text>
+    </View>
+  );
+}
+
+function Profile() {
+  return(
+    <View style={styles.container}>
+      <Text>Profile View</Text>
+    </View>
+  );
+}
+
+const Tab = createBottomTabNavigator();
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Tab.Navigator 
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+
+            if (route.name === 'Home') {
+              iconName = focused
+                ? 'heart'
+                : 'heart-outline';
+            } else if (route.name === 'Book Appointment') {
+              iconName = focused ? 'pencil' : 'pencil-outline';
+            } else if (route.name === 'Profile') {
+              iconName = focused ? 'person' : 'person-outline';
+            }
+
+            // You can return any component that you like here!
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+          tabBarActiveTintColor: '#F75050',
+          tabBarInactiveTintColor: 'gray',
+        })}>
+        <Tab.Screen name="Book Appointment" component={BookAppointment} />
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Profile" component={Profile} />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
   },
   upcomingWrapper: {
-    paddingTop: 120,
+    paddingTop: 50,
     paddingHorizontal: 20
   },
   sectionTitle: {
