@@ -1,55 +1,10 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import Appointment from './components/Appointment';
+import { StyleSheet} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from '@expo/vector-icons/Ionicons';
-
-function HomeScreen() {
-  return(
-    <View style={styles.container}>
-      {/* Title for upcoming appointments */}
-      <View style={styles.upcomingWrapper}>
-        <Text style={styles.sectionTitle}>Upcoming Appointments</Text>
-
-        <View style={styles.upcomingItems}>
-          {/* This is where the upcoming appointments will go */}
-          <Appointment text={'Check-Up'} />
-          <Appointment text={'Physical'}/>
-          <Appointment text={'Lab Results'}/>
-        </View>
-      </View>
-
-      {/* Title for upcoming appointments */}
-      <View style={styles.recentWrapper}>
-        <Text style={styles.sectionTitle}>Recent Appointments</Text>
-
-        <View style={styles.recentItems}>
-          {/* This is where the upcoming appointments will go */}
-          <Appointment text={'Follow-Up (Non-Urgent)'} />
-          <Appointment text={'Lab Results'}/>
-          <Appointment text={'Check-Up'}/>
-        </View>
-      </View>
-    </View>
-  );
-}
-
-function BookAppointment() {
-  return(
-    <View style={styles.container}>
-      <Text>Book Your Appointment</Text>
-    </View>
-  );
-}
-
-function Profile() {
-  return(
-    <View style={styles.container}>
-      <Text>Profile View</Text>
-    </View>
-  );
-}
+import HomeScreen from './screens/Home';
+import ApptScreen1 from './screens/ApptScreen1';
+import UserScreen from './screens/UserScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -77,9 +32,9 @@ export default function App() {
           tabBarActiveTintColor: '#F75050',
           tabBarInactiveTintColor: 'gray',
         })}>
-        <Tab.Screen name="Book Appointment" component={BookAppointment} />
+        <Tab.Screen name="Book Appointment" component={ApptScreen1} />
         <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Profile" component={Profile} />
+        <Tab.Screen name="Profile" component={UserScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
