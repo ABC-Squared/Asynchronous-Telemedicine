@@ -2,6 +2,8 @@ import SimpleSelectButton from 'react-native-simple-select-button';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, TextInput, View, Dimensions, FlatList, Button } from 'react-native';
+
+
 function ApptScreen2() {
     const [choice, setChoice] = useState('');
 

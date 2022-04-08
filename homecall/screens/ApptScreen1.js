@@ -3,8 +3,13 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Dimensions, FlatList, Button } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import ApptScreen2 from './ApptScreen2';
 
-function ApptScreen1() {
+const Stack = createNativeStackNavigator();
+
+function ApptScreen1({navigation}) {
     const [choice, setChoice] = useState('');
 
     const button_list = [
@@ -15,9 +20,9 @@ function ApptScreen1() {
       { label: "Speak to Doctor", value: "5" },
     ];
 
-    function onPressNext(){
-        // Should move to the next screen
-    }
+    // function onPressNext(){
+    //     // Should move to the next screen
+    // }
     return (
       <View style={styles.container}>
         <StatusBar style="auto" />
@@ -42,9 +47,12 @@ function ApptScreen1() {
             }
           />
         </View>
-        <View backgroundColor="#FF0000"> 
-        <Button
-            onPress={onPressNext}
+        <View backgroundColor="#FF0000">
+        
+        </View>
+        <View style={styles.nextButtonStyle}>
+        <Button 
+            onPress={() => navigation.navigate('ApptScreen2')}
             title="Next"
             color="#ffff"
             disabled={choice == ''} 
@@ -114,6 +122,14 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.2,
         shadowRadius: 2,  
         elevation: 3
+    },
+
+    nextButtonStyle:{
+      margin: 10,
+      width: 250,
+      backgroundColor:"#FF0000",
+      justifyContent:'center',
+      alignSelf: 'center',
     }
   });
 

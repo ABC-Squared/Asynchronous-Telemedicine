@@ -1,10 +1,22 @@
+import { color } from '@rneui/base';
 import {StyleSheet, Text, View } from 'react-native';
 
 
 function UserScreen() {
   return(
     <View style={styles.container}>
-      <Text>Hello, Francis</Text>
+      {/* Title for upcoming appointments */}
+      <View style={styles.upcomingWrapper}>
+        <Text style={styles.sectionTitle}>MITCHELL, Abby</Text>
+
+        <View style={styles.upcomingItems}>
+          {/* This is where the upcoming appointments will go */}
+          <Text>Chronic Diagnoses</Text>
+          <Text>Previous Acute Diagnoses</Text>
+          <Text>View all Previous Diagnoses</Text>
+          
+        </View>
+      </View>
     </View>
   );
 }
