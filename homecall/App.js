@@ -1,17 +1,21 @@
 import { StyleSheet} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { MainStackNavigator } from './navigation/StackNavigation';
+import BottomNavigator from './navigation/TabNavigation';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import HomeScreen from './screens/Home';
 import ApptScreen1 from './screens/ApptScreen1';
 import UserScreen from './screens/UserScreen';
 import Chat from './screens/Chat';
 
-const Tab = createBottomTabNavigator();
+//const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    
+    <NavigationContainer>
+      <BottomNavigator />
+    </NavigationContainer>
   );
 }
 
