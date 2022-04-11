@@ -9,7 +9,7 @@ import ApptScreen2 from './ApptScreen2';
 
 const Stack = createNativeStackNavigator();
 
-function ApptScreen1({navigation}) {
+const ApptScreen1 = ({navigation}) => {
     const [choice, setChoice] = useState('');
 
     const button_list = [
@@ -52,7 +52,7 @@ function ApptScreen1({navigation}) {
         </View>
         <View style={styles.nextButtonStyle}>
         <Button 
-            onPress={() => navigation.navigate('ApptScreen2')}
+            onPress={() => navigation.navigate('Page 2')}
             title="Next"
             color="#ffff"
             disabled={choice == ''} 

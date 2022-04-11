@@ -1,17 +1,19 @@
 import { StyleSheet} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { MainStackNavigator } from './navigation/StackNavigation';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import HomeScreen from './screens/Home';
 import ApptScreen1 from './screens/ApptScreen1';
 import UserScreen from './screens/UserScreen';
 
-const Tab = createBottomTabNavigator();
+//const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator initialRouteName='Home' 
+      <MainStackNavigator />
+      {/* <Tab.Navigator initialRouteName='Home' 
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
@@ -35,7 +37,7 @@ export default function App() {
         <Tab.Screen name="Book Appointment" component={ApptScreen1} />
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Profile" component={UserScreen} />
-      </Tab.Navigator>
+      </Tab.Navigator> */}
     </NavigationContainer>
   );
 }
