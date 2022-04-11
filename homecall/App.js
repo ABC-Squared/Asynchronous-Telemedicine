@@ -14,31 +14,6 @@ export default function App() {
   return (
     <NavigationContainer>
       <BottomNavigator />
-      {/* <Tab.Navigator initialRouteName='Home' 
-        screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
-            let iconName;
-
-            if (route.name === 'Home') {
-              iconName = focused
-                ? 'heart'
-                : 'heart-outline';
-            } else if (route.name === 'Book Appointment') {
-              iconName = focused ? 'pencil' : 'pencil-outline';
-            } else if (route.name === 'Profile') {
-              iconName = focused ? 'person' : 'person-outline';
-            }
-
-            // You can return any component that you like here!
-            return <Ionicons name={iconName} size={size} color={color} />;
-          },
-          tabBarActiveTintColor: '#F75050',
-          tabBarInactiveTintColor: 'gray',
-        })}>
-        <Tab.Screen name="Book Appointment" component={ApptScreen1} />
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Profile" component={UserScreen} />
-      </Tab.Navigator> */}
     </NavigationContainer>
   );
 }
