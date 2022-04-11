@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
-import Appointment from './Appointment';
+import Appointment from '../components/Appointment';
 
 function HomeScreen() {
     return(

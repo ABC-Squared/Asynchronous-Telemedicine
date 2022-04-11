@@ -7,6 +7,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import HomeScreen from './screens/Home';
 import ApptScreen1 from './screens/ApptScreen1';
 import UserScreen from './screens/UserScreen';
+import Chat from './screens/Chat';
 
 //const Tab = createBottomTabNavigator();
 
