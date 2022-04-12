@@ -37,8 +37,11 @@ const ApptScreen2 = ({navigation}) => {
               />
           }
         />
-        <TextInput
-        placeholder="Write in your symptoms" />
+        <View backgroundColor="ffff">
+        <TextInput style={styles.textInput}
+        placeholder="Write in your symptoms" 
+        />
+        </View>
       </View>
       <View backgroundColor="#FF0000">
       
@@ -48,6 +51,7 @@ const ApptScreen2 = ({navigation}) => {
           onPress={() => navigation.navigate('Page 3')}
           title="Next"
           color="#ffff"
+          borderRadius={10}
           disabled={choice == ''} 
           icon={
               <Icon
@@ -65,6 +69,11 @@ const ApptScreen2 = ({navigation}) => {
 export default ApptScreen2;
 
 const styles = StyleSheet.create({
+    textInput: {
+      backgroundColor: "#ffff",
+      borderRadius: 10,
+      height: 50,
+    },
     container: {
       flex: 1,
       backgroundColor: '#fff',

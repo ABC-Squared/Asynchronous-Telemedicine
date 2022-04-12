@@ -1,14 +1,23 @@
 import SimpleSelectButton from 'react-native-simple-select-button';
-import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
-import {Text, StyleSheet, TextInput, View, FlatList, Button } from 'react-native';
+import React from 'react';
+import {Text, StyleSheet, View, Button} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const UploadScreen = ({navigation}) => {
   
   return (
     <View style={styles.container}>
-      <Text>UploadScreen </Text>
-    </View>
+      <Button 
+            title="Upload Image"
+            color="#F2F2F2"
+            icon={
+                <Icon
+                  name="arrow-right"
+                  size={30}
+                  color="white"
+                  />}
+                  />
+        </View>
   );
 }
 

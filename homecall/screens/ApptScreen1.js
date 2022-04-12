@@ -14,7 +14,7 @@ const ApptScreen1 = ({navigation}) => {
       { label: "Specialist ", value: "4" },
       { label: "Speak to Doctor", value: "5" },
     ];
-    
+
     return (
       <View style={styles.container}>
         <StatusBar style="auto" />
@@ -47,6 +47,7 @@ const ApptScreen1 = ({navigation}) => {
             onPress={() => navigation.navigate('Page 2')}
             title="Next"
             color="#ffff"
+            borderRadius={10}
             disabled={choice == ''} 
             icon={
                 <Icon
