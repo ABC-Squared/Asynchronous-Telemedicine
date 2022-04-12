@@ -18,7 +18,12 @@ const UploadScreen = ({navigation}) => {
             Upload Audio
             </Text>
         </TouchableOpacity>
+
+        <TouchableOpacity style={styles.uploadButton}>
+          <Icon color="white" size={50} name="arrow-up" />
+        </TouchableOpacity>
         </View>
+        
   );
 }
 
@@ -101,6 +106,16 @@ const styles = StyleSheet.create({
     textInButton: {
         fontSize: 30,
         fontWeight: "bold"
+    },
+    uploadButton: {
+      marginTop: 20,
+      width: 100,
+      height: 100,
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: 10,
+      borderRadius: 100,
+      backgroundColor: '#F75050',
     }
   });
 
