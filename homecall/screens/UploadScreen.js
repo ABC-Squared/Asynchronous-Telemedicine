@@ -1,22 +1,23 @@
-import SimpleSelectButton from 'react-native-simple-select-button';
 import React from 'react';
-import {Text, StyleSheet, View, Button} from 'react-native';
+import {Text, TouchableOpacity, StyleSheet, View, Button} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const UploadScreen = ({navigation}) => {
   
   return (
     <View style={styles.container}>
-      <Button 
-            title="Upload Image"
-            color="#F2F2F2"
-            icon={
-                <Icon
-                  name="arrow-right"
-                  size={30}
-                  color="white"
-                  />}
-                  />
+        <TouchableOpacity style={styles.uploadButtonStyle}>
+        <Text style={styles.textInButton}>
+            <Icon size={30} name="image" style={styles.icon} />
+            Upload Image
+            </Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.uploadButtonStyle}>
+        <Text style={styles.textInButton}>
+            <Icon size={30} name="music" style={styles.icon} />
+            Upload Audio
+            </Text>
+        </TouchableOpacity>
         </View>
   );
 }
@@ -75,13 +76,31 @@ const styles = StyleSheet.create({
         shadowRadius: 2,  
         elevation: 3
     },
-
     nextButtonStyle:{
       margin: 10,
       width: 250,
       backgroundColor:"#FF0000",
       justifyContent:'center',
       alignSelf: 'center',
+    },
+    uploadButtonStyle: {
+        height: 100,
+        backgroundColor: '#F2F2F2',
+        padding: 15,
+        borderRadius: 10,
+        margin: 5,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.2,
+        shadowRadius: 2,  
+        elevation: 3
+    },
+    icon: {
+        height: 40
+    },
+    textInButton: {
+        fontSize: 30,
+        fontWeight: "bold"
     }
   });
 
