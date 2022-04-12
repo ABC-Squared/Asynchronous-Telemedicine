@@ -1,13 +1,8 @@
 import SimpleSelectButton from 'react-native-simple-select-button';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Dimensions, FlatList, Button } from 'react-native';
+import { StyleSheet, View, FlatList, Button } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import ApptScreen2 from './ApptScreen2';
-
-const Stack = createNativeStackNavigator();
 
 const ApptScreen1 = ({navigation}) => {
     const [choice, setChoice] = useState('');
@@ -20,9 +15,6 @@ const ApptScreen1 = ({navigation}) => {
       { label: "Speak to Doctor", value: "5" },
     ];
 
-    // function onPressNext(){
-    //     // Should move to the next screen
-    // }
     return (
       <View style={styles.container}>
         <StatusBar style="auto" />
@@ -55,6 +47,7 @@ const ApptScreen1 = ({navigation}) => {
             onPress={() => navigation.navigate('Page 2')}
             title="Next"
             color="#ffff"
+            borderRadius={10}
             disabled={choice == ''} 
             icon={
                 <Icon
