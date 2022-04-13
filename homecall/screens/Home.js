@@ -20,10 +20,15 @@ function HomeScreen() {
       });
   }, [])
   return (
-    <View>
-      {appointment.map((obj) => (
-        <Appointment text={obj.name} />
-  ))}
+    <View style={styles.container}>
+       <View style={styles.upcomingWrapper}>
+          <Text style={styles.sectionTitle}>Upcoming Appointments</Text>
+          <View style={styles.upcomingItems}> 
+            {appointment.map((obj) => (
+              <Appointment text={obj.name} />
+            ))}
+      </View>
+      </View>
     </View>
   );
     
