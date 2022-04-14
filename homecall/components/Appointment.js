@@ -6,7 +6,9 @@ const Appointment = (props) => {
     return (
         <View style={styles.item}>
             <View style={styles.itemText}>
+                {/* Appointment Name */}
                 <Text>{props.text}</Text>
+                <Text>{props.date.toString()}</Text>
             </View>
             <View style={styles.chatButton}></View>
         </View>

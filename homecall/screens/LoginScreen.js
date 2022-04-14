@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TextInput, View, TouchableOpacity, Alert} from 'react-native';
+import { StyleSheet, Text, TextInput, View, TouchableOpacity, Alert, Image} from 'react-native';
 import React from 'react';
 import {signIn} from '../firebase/firebaseMethods';
 import { useState } from 'react';
@@ -18,7 +18,9 @@ const LoginScreen = ({navigation}) => {
     };
     
     return(
-        <View style={styles.loginContainer}>   
+        <View style={styles.loginContainer}>
+
+        <Image style={styles.logoContainer} source={require(`../assets/homecalllogo.png`)} /> 
 
           {/* Username field */}
           <TextInput 
@@ -68,16 +70,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flex: 1,
         justifyContent: 'center',
-        backgroundColor: "white"
+        backgroundColor: "#F75050"
     },
     loginTextInput: {
         margin: 15,
         height: 40,
-        borderColor: 'black',
         opacity: 10,
-        borderWidth: 2,
-        backgroundColor: "#ededed",
-        width: 300
+        backgroundColor: "#ffff",
+        width: 300,
+        borderRadius: 10
     },
     textInput: {
       backgroundColor: "#ffff",
@@ -137,19 +138,25 @@ const styles = StyleSheet.create({
     },
     loginButtonStyle : {
         elevation: 8,
-        backgroundColor: "#F75050",
+        backgroundColor: "white",
         borderRadius: 10,
         paddingVertical: 10,
         paddingHorizontal: 12
     },
     loginButtonText : {
         fontSize: 18,
-        color: "#fff",
+        color: "#F75050",
         alignSelf: "center",
     },
     registerButtonStyle : {
+        marginTop: 20,
         fontSize: 15,
-        color: '#51A0D5'
+        color: '#ffff'
+    },
+    logoContainer : {
+      width: 200,
+      height: 40,
+      marginBottom: 50
     }
   });
 
