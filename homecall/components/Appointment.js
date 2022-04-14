@@ -1,8 +1,10 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import {Text, TouchableOpacity, StyleSheet, View} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { useNavigation } from '@react-navigation/native';
 
 const Appointment = (props) => {
-
+    const navigation = useNavigation()
     return (
         <View style={styles.item}>
             <View style={styles.itemText}>
@@ -10,7 +12,13 @@ const Appointment = (props) => {
                 <Text>{props.text}</Text>
                 <Text>{props.date.toString()}</Text>
             </View>
-            <View style={styles.chatButton}></View>
+
+            {/* Chat Button */}
+            <TouchableOpacity onPress={() => navigation.navigate('Chat')} >
+                <View style={styles.chatButton}>
+                <Icon color="white" size={20} name="comment" />
+                </View>
+            </TouchableOpacity>
         </View>
     )
 }
@@ -28,11 +36,10 @@ const styles = StyleSheet.create({
         elevation: 3
     },
     chatButton:{
-        width: 12,
-        height: 12,
+        width: 25,
+        height: 25,
         backgroundColor: '#F75050',
-        flexDirection: 'row',
-        justifyContent: 'flex-end'
+        borderRadius: 30
     },
     itemText:{
         
