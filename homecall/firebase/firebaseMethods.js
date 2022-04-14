@@ -5,21 +5,25 @@ import 'firebase/compat/firestore';
 import 'firebase/compat/storage';
 
 
-export async function registration(email, password, lastName, firstName) {
+export async function registration(email, password, lastName, firstName, address, medications, immunizations, doctorCode) {
   try {
     await firebase.auth().createUserWithEmailAndPassword(email, password);
     const currentUser = firebase.auth().currentUser;
 
     const db = firebase.firestore();
-    db.collection("users")
+    db.collection("patients") // Adding the user to the patients
       .doc(currentUser.uid)
       .set({
         email: currentUser.email,
         lastName: lastName,
         firstName: firstName,
+        address: address,
+        medications: medications,
+        immunizations: immunizations,
+        doctorCode: doctorCode
       });
   } catch (err) {
-    Alert.alert("There is something wrong!!!!", err.message);
+    Alert.alert("There is something wrong!", err.message);
   }
 }
 
