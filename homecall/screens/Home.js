@@ -1,34 +1,70 @@
+import { useState, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Appointment from '../components/Appointment';
+import { db } from '../firebase/firebase';
 
 function HomeScreen() {
-    return(
-      <View style={styles.container}>
-        {/* Title for upcoming appointments */}
-        <View style={styles.upcomingWrapper}>
+
+  const [appointment, setAppointment] = useState([]);
+
+  function convertToDate(seconds){
+    const normalDate = new Date(seconds).toLocaleString('en-GB',{timeZone:'UTC'})
+    return normalDate
+  }
+  useEffect(() => {
+    const ref = db.collection('appointments');
+    ref.onSnapshot((query) => {
+        const objs = [];
+        query.forEach((doc) => {
+          objs.push({
+            id: doc.id,
+            ...doc.data(),
+          });
+        });
+        setAppointment(objs);
+      });
+  }, [])
+  // console.log("this is appt", appointment.apptDate.seconds.toDate)
+  return (
+    <View style={styles.container}>
+       <View style={styles.upcomingWrapper}>
           <Text style={styles.sectionTitle}>Upcoming Appointments</Text>
-  
-          <View style={styles.upcomingItems}>
-            {/* This is where the upcoming appointments will go */}
-            <Appointment text={'Check-Up'} />
-            <Appointment text={'Physical'}/>
-            <Appointment text={'Lab Results'}/>
-          </View>
-        </View>
-  
-        {/* Title for upcoming appointments */}
-        <View style={styles.recentWrapper}>
-          <Text style={styles.sectionTitle}>Recent Appointments</Text>
-  
-          <View style={styles.recentItems}>
-            {/* This is where the upcoming appointments will go */}
-            <Appointment text={'Follow-Up (Non-Urgent)'} />
-            <Appointment text={'Lab Results'}/>
-            <Appointment text={'Check-Up'}/>
-          </View>
-        </View>
+          <View style={styles.upcomingItems}> 
+            {appointment.map((obj) => (
+              <Appointment text={obj.name} date={convertToDate(obj.apptDate.seconds)} />
+            ))}
       </View>
-    );
+      </View>
+    </View>
+  );
+    
+    // return(
+    //   <View style={styles.container}>
+    //     {/* Title for upcoming appointments */}
+    //     <View style={styles.upcomingWrapper}>
+    //       <Text style={styles.sectionTitle}>Upcoming Appointments</Text>
+  
+    //       <View style={styles.upcomingItems}>
+    //         {/* This is where the upcoming appointments will go */}
+    //         <Appointment text={'Check-Up'} />
+    //         <Appointment text={'Physical'}/>
+    //         <Appointment text={'Lab Results'}/>
+    //       </View>
+    //     </View>
+  
+    //     {/* Title for upcoming appointments */}
+    //     <View style={styles.recentWrapper}>
+    //       <Text style={styles.sectionTitle}>Recent Appointments</Text>
+  
+    //       <View style={styles.recentItems}>
+    //         {/* This is where the upcoming appointments will go */}
+    //         <Appointment text={'Follow-Up (Non-Urgent)'} />
+    //         <Appointment text={'Lab Results'}/>
+    //         <Appointment text={'Check-Up'}/>
+    //       </View>
+    //     </View>
+    //   </View>
+    //);
   }
 
 export default HomeScreen;

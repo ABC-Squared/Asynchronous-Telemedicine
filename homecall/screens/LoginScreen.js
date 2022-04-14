@@ -1,18 +1,55 @@
-import { StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TextInput, View, TouchableOpacity, Alert, Image} from 'react-native';
 import React from 'react';
+import {signIn} from '../firebase/firebaseMethods';
+import { useState } from 'react';
 
 const LoginScreen = ({navigation}) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+    const handlePress = () => {
+      if (!email || !password) {
+        Alert.alert('Email/Password field is required.');
+      }
+
+      signIn(email, password);
+      setEmail('');
+      setPassword('');
+    };
     
     return(
-        <View style={styles.loginContainer}>   
-          <Text>homecall login screen</Text>
-          <TextInput autoCapitalize='none' placeholder="Username/Email" style={styles.loginTextInput} placeholderTextColor="gray" />
-          <TextInput autoCapitalize='none' placeholder="Password" style={styles.loginTextInput} placeholderTextColor="gray" secureTextEntry={true} />
-          <TouchableOpacity style={styles.loginButtonStyle} onPress={() => navigation.navigate('Home')}>
+        <View style={styles.loginContainer}>
+
+        <Image style={styles.logoContainer} source={require(`../assets/homecalllogo.png`)} /> 
+
+          {/* Username field */}
+          <TextInput 
+            autoCapitalize='none' 
+            placeholder="Username/Email" 
+            style={styles.loginTextInput} 
+            placeholderTextColor="gray" 
+            onChangeText={(email) => setEmail(email)}
+            />
+
+          {/* Password field */}
+          <TextInput 
+            autoCapitalize='none' 
+            placeholder="Password" style={styles.loginTextInput} 
+            placeholderTextColor="gray" 
+            secureTextEntry={true} 
+            onChangeText={(password) => setPassword(password)}
+            />
+
+          {/* Login Button */}
+          <TouchableOpacity 
+            style={styles.loginButtonStyle} 
+            onPress={handlePress}
+            >
+
             <Text style={styles.loginButtonText} >
             Log in
             </Text>
-        </TouchableOpacity>
+          </TouchableOpacity>
 
         <TouchableOpacity onPress={() => navigation.navigate('Register')} >
             <Text style={styles.registerButtonStyle}>
@@ -33,16 +70,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flex: 1,
         justifyContent: 'center',
-        backgroundColor: "white"
+        backgroundColor: "#F75050"
     },
     loginTextInput: {
         margin: 15,
         height: 40,
-        borderColor: 'black',
         opacity: 10,
-        borderWidth: 2,
-        backgroundColor: "#ededed",
-        width: 300
+        backgroundColor: "#ffff",
+        width: 300,
+        borderRadius: 10
     },
     textInput: {
       backgroundColor: "#ffff",
@@ -102,19 +138,25 @@ const styles = StyleSheet.create({
     },
     loginButtonStyle : {
         elevation: 8,
-        backgroundColor: "#F75050",
+        backgroundColor: "white",
         borderRadius: 10,
         paddingVertical: 10,
         paddingHorizontal: 12
     },
     loginButtonText : {
         fontSize: 18,
-        color: "#fff",
+        color: "#F75050",
         alignSelf: "center",
     },
     registerButtonStyle : {
+        marginTop: 20,
         fontSize: 15,
-        color: '#51A0D5'
+        color: '#ffff'
+    },
+    logoContainer : {
+      width: 200,
+      height: 40,
+      marginBottom: 50
     }
   });
 
