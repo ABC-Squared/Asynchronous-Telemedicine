@@ -1,8 +1,15 @@
 import React from 'react';
-import {Text, TouchableOpacity, StyleSheet, View, Button} from 'react-native';
+import {Text, TouchableOpacity, StyleSheet, View} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { postAppointment } from '../firebase/firebaseMethods';
 
-const UploadScreen = ({navigation}) => {
+const UploadScreen = ({route}) => {
+  const appointmentName = route.params;
+
+  const handlePress = () => {
+    console.log("appointment name", appointmentName)
+    postAppointment(appointmentName.appointmentName);
+  };
   
   return (
     <View style={styles.container}>
@@ -18,7 +25,12 @@ const UploadScreen = ({navigation}) => {
             Upload Audio
             </Text>
         </TouchableOpacity>
+
+        <TouchableOpacity onPress={handlePress} style={styles.uploadButton}>
+          <Icon color="white" size={50} name="arrow-up" />
+        </TouchableOpacity>
         </View>
+        
   );
 }
 
@@ -101,6 +113,16 @@ const styles = StyleSheet.create({
     textInButton: {
         fontSize: 30,
         fontWeight: "bold"
+    },
+    uploadButton: {
+      marginTop: 20,
+      width: 100,
+      height: 100,
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: 10,
+      borderRadius: 100,
+      backgroundColor: '#F75050',
     }
   });
 

@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { StyleSheet, View, FlatList, Button } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const ApptScreen1 = ({navigation}) => {
+const ApptScreen1 = ({route, navigation}) => {
     const [choice, setChoice] = useState('');
 
     const button_list = [
@@ -26,8 +26,8 @@ const ApptScreen1 = ({navigation}) => {
             renderItem={
               ({ item }) => 
                 <SimpleSelectButton
-                  onPress={() => setChoice(item.value)}
-                  isChecked={choice === item.value}
+                  onPress={() => setChoice(item.label)}
+                  isChecked={choice === item.label}
                   text={item.label}
                   textSize={30}
                   iconColor="#fff"
@@ -44,7 +44,7 @@ const ApptScreen1 = ({navigation}) => {
         </View>
         <View style={styles.nextButtonStyle}>
         <Button 
-            onPress={() => navigation.navigate('Page 2')}
+            onPress={() => navigation.navigate('Page 2', {appointmentName: choice})}
             title="Next"
             color="#ffff"
             borderRadius={10}

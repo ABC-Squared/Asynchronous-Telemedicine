@@ -5,13 +5,23 @@ import ApptScreen2 from "../screens/ApptScreen2";
 import UploadScreen from "../screens/UploadScreen";
 import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
+import {TouchableOpacity} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 const Stack = createStackNavigator()
 
 const MainStackNavigator = () => {
     return (
-        <Stack.Navigator>
+        <Stack.Navigator screenOptions={{
+            headerStyle: {
+              backgroundColor: '#F1E4E8',
+            },
+            headerTintColor: 'black',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}>
             <Stack.Screen name="Page 1" component={ApptScreen1} />
             <Stack.Screen name="Page 2" component={ApptScreen2} />
             <Stack.Screen name="Page 3" component={UploadScreen} />

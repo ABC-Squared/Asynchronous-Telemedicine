@@ -4,8 +4,9 @@ import React, { useState } from 'react';
 import { StyleSheet, TextInput, View, FlatList, Button } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const ApptScreen2 = ({navigation}) => {
+const ApptScreen2 = ({route, navigation}) => {
   const [choice, setChoice] = useState('');
+  const appointmentName = route.params;
 
   const button_list = [
     { label: "I have a cough", value: "1" },
@@ -48,7 +49,7 @@ const ApptScreen2 = ({navigation}) => {
       </View>
       <View style={styles.nextButtonStyle}>
       <Button 
-          onPress={() => navigation.navigate('Page 3')}
+          onPress={() => navigation.navigate('Page 3', {appointmentName: appointmentName.appointmentName})}
           title="Next"
           color="#ffff"
           borderRadius={10}
