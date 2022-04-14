@@ -44,3 +44,21 @@ export async function loggingOut() {
     Alert.alert('There is something wrong!', err.message);
   }
 }
+
+export async function postAppointment(appointmentName) {
+  const currentUser = firebase.auth().currentUser;
+
+  const db = firebase.firestore();
+  db.collection("appointments").add({
+    name: appointmentName,
+    userID: currentUser.uid,
+    apptDate: new Date(),
+    isComplete: false
+  })
+  .then((docRef) => {
+    console.log("Document written with ID: ", docRef.id);
+  })
+  .catch((error) => {
+    console.error("Error adding document: ", error);
+  });
+}
