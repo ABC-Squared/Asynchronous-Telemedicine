@@ -6,6 +6,11 @@ import { db } from '../firebase/firebase';
 function HomeScreen() {
 
   const [appointment, setAppointment] = useState([]);
+
+  function convertToDate(seconds){
+    const normalDate = new Date(seconds).toLocaleString('en-GB',{timeZone:'UTC'})
+    return normalDate
+  }
   useEffect(() => {
     const ref = db.collection('appointments');
     ref.onSnapshot((query) => {
@@ -19,13 +24,14 @@ function HomeScreen() {
         setAppointment(objs);
       });
   }, [])
+  // console.log("this is appt", appointment.apptDate.seconds.toDate)
   return (
     <View style={styles.container}>
        <View style={styles.upcomingWrapper}>
           <Text style={styles.sectionTitle}>Upcoming Appointments</Text>
           <View style={styles.upcomingItems}> 
             {appointment.map((obj) => (
-              <Appointment text={obj.name} />
+              <Appointment text={obj.name} date={convertToDate(obj.apptDate.seconds)} />
             ))}
       </View>
       </View>
