@@ -25,7 +25,7 @@ const LoginScreen = ({navigation}) => {
           {/* Username field */}
           <TextInput 
             autoCapitalize='none' 
-            placeholder="Username/Email" 
+            placeholder="Email" 
             style={styles.loginTextInput} 
             placeholderTextColor="gray" 
             onChangeText={(email) => setEmail(email)}

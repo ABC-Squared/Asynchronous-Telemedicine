@@ -1,4 +1,4 @@
-import { Alert, StyleSheet, Text, TextInput, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, TextInput, View, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
 import { useState } from 'react';
 import { registration } from '../firebase/firebaseMethods';
@@ -15,10 +15,7 @@ const RegisterScreen = ({navigation}) => {
   const [doctorCode, setDoctorCode] = useState('');
 
   const handlePress = () => {
-    if (!email || !password) {
-      Alert.alert('Email/Password field is required.');
-    }
-
+    console.log("this is the email", email);
     registration(email, password, lastName, firstName, address, medications, immunizations, doctorCode);
     setEmail('');
     setPassword('');
@@ -32,6 +29,8 @@ const RegisterScreen = ({navigation}) => {
     
     return(
         <View style={styles.loginContainer}> 
+
+          <Image style={styles.logoContainer} source={require(`../assets/homecalllogo.png`)} />
           {/* First Name field */}
           <TextInput 
             autoCapitalize='none' 
@@ -61,7 +60,7 @@ const RegisterScreen = ({navigation}) => {
           {/* Username field */}
           <TextInput 
             autoCapitalize='none' 
-            placeholder="Username/Email" 
+            placeholder="Email" 
             style={styles.loginTextInput}
             secureTextEntry={false} 
             placeholderTextColor="gray" 
@@ -103,7 +102,7 @@ const RegisterScreen = ({navigation}) => {
             style={styles.loginTextInput} 
             placeholderTextColor="gray"
             secureTextEntry={false}  
-            onChangeText={(doctorCode) => setPassword(setDoctorCode)}
+            onChangeText={(doctorCode) => setDoctorCode(doctorCode)}
             />
 
           {/* Login Button */}
@@ -216,6 +215,11 @@ const styles = StyleSheet.create({
     registerButtonStyle : {
         fontSize: 15,
         color: '#51A0D5'
+    },
+    logoContainer : {
+      width: 200,
+      height: 40,
+      marginBottom: 50
     }
   });
 
