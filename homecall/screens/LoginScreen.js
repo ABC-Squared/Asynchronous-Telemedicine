@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
     registerButtonStyle : {
         marginTop: 20,
         fontSize: 15,
-        color: '#ffff'
+        color: 'black'
     },
     logoContainer : {
       width: 200,

@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, Text, View, Image, FlatList} from 'react-native';
 import firebase from 'firebase/compat/app';
 import { useState, useEffect } from 'react';
 
@@ -8,6 +8,8 @@ function UserScreen() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [address, setAddress] = useState('');
+  const [medications, setMedications] = useState([]);
+  const [immunizations, setImmunations] = useState([]);
 
   useEffect(() => {
     async function getUserInfo(){
@@ -24,6 +26,8 @@ function UserScreen() {
         setFirstName(dataObj.firstName)
         setLastName(dataObj.lastName)
         setAddress(dataObj.address)
+        setMedications(dataObj.medications.split(", ").map(x => ({meds: x})))
+        setImmunations(dataObj.immunizations.split(", ").map(x => ({meds: x})))
       }
     }
     getUserInfo();
@@ -37,7 +41,7 @@ function UserScreen() {
 
       {/* Image of Patient */}
       <Image style={styles.imageContainer}
-        source={require(`../assets/profilepictures/testpfp.jpg`)} //Add other pfp to here.
+        source={require(`../assets/profilepictures/abbymitchell.png`)} //Add other pfp to here.
       />
 
       {/* Name of Patient */}
@@ -53,8 +57,13 @@ function UserScreen() {
 
         <View style={styles.upcomingItems}>
           {/* This is where the Meds and Immunization will go */}
-          <Text>Meds</Text>
-          <Text>Immunization</Text>
+          <Text style={{fontWeight:'bold', fontSize: 15}} > Medications</Text>
+          <FlatList 
+            data={medications}
+            renderItem={({item}) => <Text>{item.meds}</Text>}
+            keyExtractor={item => item.meds}
+          />
+          <Text style={{fontWeight:'bold', fontSize: 15}} > Immunizations</Text>
           
         </View>
       </View>
@@ -91,7 +100,6 @@ const styles = StyleSheet.create({
       borderRadius: 10,
       shadowOpacity: 0.3,
       shadowRadius: 5,  
-      elevation: 3,
       height: 232,
       width: 232,
       alignSelf: 'center'

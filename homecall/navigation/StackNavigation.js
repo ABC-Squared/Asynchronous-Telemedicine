@@ -42,7 +42,7 @@ const LoginStackNavigator = () => {
 const HomeStackNavigator = () => {
   return (
       <Stack.Navigator screenOptions={{headerShown:false}}>
-          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Main" component={HomeScreen} />
           <Stack.Screen name="Chat" component={Chat} />
       </Stack.Navigator>
   );

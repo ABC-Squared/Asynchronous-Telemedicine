@@ -14,16 +14,15 @@ const RegisterScreen = ({navigation}) => {
   const [immunizations, setImmunations] = useState('');
   const [doctorCode, setDoctorCode] = useState('');
 
-  const handlePress = () => {
-    console.log("this is the email", email);
+  const handlePress = () => {   
     registration(email, password, lastName, firstName, address, medications, immunizations, doctorCode);
     setEmail('');
     setPassword('');
     setfirstName('');
     setlastName('');
     setAddress('');
-    setMedications('');
-    setImmunations('');
+    setMedications([]);
+    setImmunations([]);
     setDoctorCode('');
   };
     
@@ -116,7 +115,7 @@ const RegisterScreen = ({navigation}) => {
             </Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Text style={{color:'#51A0D5', fontSize:20}}>
+            <Text style={{color:'black', fontSize:20, marginTop: 20}}>
                 Back
             </Text>
             </TouchableOpacity>
@@ -131,19 +130,19 @@ const styles = StyleSheet.create({
         flex: 1
     },
     loginContainer: {
-        alignItems: 'center',
-        flex: 1,
-        justifyContent: 'center'
-    },
-    loginTextInput: {
-        margin: 15,
-        height: 40,
-        borderColor: 'black',
-        opacity: 10,
-        borderWidth: 2,
-        backgroundColor: "white",
-        width: 300
-    },
+      alignItems: 'center',
+      flex: 1,
+      justifyContent: 'center',
+      backgroundColor: "#F75050"
+  },
+  loginTextInput: {
+    margin: 15,
+    height: 40,
+    opacity: 10,
+    backgroundColor: "#ffff",
+    width: 300,
+    borderRadius: 10
+},
     textInput: {
       backgroundColor: "#ffff",
       borderRadius: 10,
@@ -201,17 +200,17 @@ const styles = StyleSheet.create({
         elevation: 3
     },
     loginButtonStyle : {
-        elevation: 8,
-        backgroundColor: "#F75050",
-        borderRadius: 10,
-        paddingVertical: 10,
-        paddingHorizontal: 12
-    },
-    loginButtonText : {
-        fontSize: 18,
-        color: "#fff",
-        alignSelf: "center",
-    },
+      elevation: 8,
+      backgroundColor: "white",
+      borderRadius: 10,
+      paddingVertical: 10,
+      paddingHorizontal: 12
+  },
+  loginButtonText : {
+      fontSize: 18,
+      color: "#F75050",
+      alignSelf: "center",
+  },
     registerButtonStyle : {
         fontSize: 15,
         color: '#51A0D5'

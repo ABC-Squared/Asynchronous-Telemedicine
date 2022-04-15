@@ -23,6 +23,7 @@ export async function registration(email, password, lastName, firstName, address
         immunizations: immunizations,
         doctorCode: doctorCode
       });
+  Alert.alert('Successfully registered!', err.message);
   } catch (err) {
     console.error("error", err.message)
   }

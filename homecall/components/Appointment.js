@@ -7,18 +7,18 @@ const Appointment = (props) => {
     const navigation = useNavigation()
     return (
         <View style={styles.item}>
-            <View style={styles.itemText}>
+            <View>
                 {/* Appointment Name */}
-                <Text>{props.text}</Text>
-                <Text>{props.date.toString()}</Text>
+                <Text style={{fontSize: 15}}>{props.text}</Text>
+                <Text style={{fontWeight: 'bold', fontSize: 20}}>{props.date}</Text>
             </View>
 
             {/* Chat Button */}
-            <TouchableOpacity onPress={() => navigation.navigate('Chat')} >
-                <View style={styles.chatButton}>
-                <Icon color="white" size={20} name="comment" />
-                </View>
+            <View style={styles.chatTouch}>
+            <TouchableOpacity  style={styles.chatButton} onPress={() => navigation.navigate('Chat')} >
+                    <Icon color="white" size={25} name="comment" />
             </TouchableOpacity>
+            </View>
         </View>
     )
 }
@@ -36,14 +36,18 @@ const styles = StyleSheet.create({
         elevation: 3
     },
     chatButton:{
-        width: 25,
-        height: 25,
+        width: 35,
+        height: 35,
         backgroundColor: '#F75050',
-        borderRadius: 30
+        borderRadius: 30,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
-    itemText:{
-        
-    },
+    chatTouch : {
+        justifyContent: 'flex-end',
+        alignItems: 'flex-end'
+
+    }
 });
 
 export default Appointment;
