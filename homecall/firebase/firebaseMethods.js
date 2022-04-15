@@ -15,6 +15,7 @@ export async function registration(email, password, lastName, firstName, address
       .doc(currentUser.uid)
       .set({
         email: currentUser.email,
+        userID: currentUser.uid,
         lastName: lastName,
         firstName: firstName,
         address: address,
@@ -22,8 +23,9 @@ export async function registration(email, password, lastName, firstName, address
         immunizations: immunizations,
         doctorCode: doctorCode
       });
+  Alert.alert('Successfully registered!', err.message);
   } catch (err) {
-    Alert.alert("There is something wrong!", err.message);
+    console.error("error", err.message)
   }
 }
 

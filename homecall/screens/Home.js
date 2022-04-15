@@ -9,9 +9,11 @@ function HomeScreen() {
   let currentUserUID = firebase.auth().currentUser.uid;
 
   function convertToDate(seconds){
-    const normalDate = new Date(seconds).toLocaleString('en-GB',{timeZone:'UTC'})
-    return normalDate
+    var normalDate = new Date(1970, 0, 1); // Epoch
+    normalDate.setSeconds(seconds);
+    return normalDate.toDateString()
   }
+
   useEffect(() => {
     const ref = firebase.firestore().collection('appointments');
 
@@ -23,7 +25,7 @@ function HomeScreen() {
         const matchedDocs = querySnapshot.size
         if (matchedDocs) {
           querySnapshot.docs.forEach(doc => {
-            setAppointment(querySnapshot.docs.map(doc => doc.data()))
+            setAppointment(appointment => [...appointment, doc.data()]);
           })
         } else {
           console.log("0 documents matched the query")
@@ -31,7 +33,7 @@ function HomeScreen() {
       })
   }, [])
 
-  return (
+  return (  
     <View style={styles.container}>
        <View style={styles.upcomingWrapper}>
           <Text style={styles.sectionTitle}>Upcoming Appointments</Text>
