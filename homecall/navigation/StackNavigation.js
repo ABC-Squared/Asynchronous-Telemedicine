@@ -5,8 +5,8 @@ import ApptScreen2 from "../screens/ApptScreen2";
 import UploadScreen from "../screens/UploadScreen";
 import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
-import {TouchableOpacity} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import HomeScreen from "../screens/Home";
+import Chat from "../screens/Chat";
 
 
 const Stack = createStackNavigator()
@@ -39,4 +39,13 @@ const LoginStackNavigator = () => {
     );
 }
 
-export {MainStackNavigator, LoginStackNavigator}
+const HomeStackNavigator = () => {
+  return (
+      <Stack.Navigator screenOptions={{headerShown:false}}>
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Chat" component={Chat} />
+      </Stack.Navigator>
+  );
+}
+
+export {MainStackNavigator, LoginStackNavigator, HomeStackNavigator}

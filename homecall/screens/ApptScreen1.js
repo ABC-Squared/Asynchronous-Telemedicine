@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { StyleSheet, View, FlatList, Button } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const ApptScreen1 = ({route, navigation}) => {
+const ApptScreen1 = ({navigation}) => {
     const [choice, setChoice] = useState('');
 
     const button_list = [
