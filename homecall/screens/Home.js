@@ -1,36 +1,29 @@
 import { useState, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Appointment from '../components/Appointment';
-import firebase from 'firebase/compat/app';
-
+import { db } from '../firebase/firebase';
 
 function HomeScreen() {
   const [appointment, setAppointment] = useState([]);
-  let currentUserUID = firebase.auth().currentUser.uid;
 
   function convertToDate(seconds){
     const normalDate = new Date(seconds).toLocaleString('en-GB',{timeZone:'UTC'})
     return normalDate
   }
   useEffect(() => {
-    const ref = firebase.firestore().collection('appointments');
-
-    // Create a query against the collection where we can match the userID
-    const queryRef = ref.where('userID', '==', currentUserUID);
-
-      queryRef.get().then((querySnapshot) => {
-        // total matched documents
-        const matchedDocs = querySnapshot.size
-        if (matchedDocs) {
-          querySnapshot.docs.forEach(doc => {
-            setAppointment(querySnapshot.docs.map(doc => doc.data()))
-          })
-        } else {
-          console.log("0 documents matched the query")
-        }
-      })
+    const ref = db.collection('appointments');
+    ref.onSnapshot((query) => {
+        const objs = [];
+        query.forEach((doc) => {
+          objs.push({
+            id: doc.id,
+            ...doc.data(),
+          });
+        });
+        setAppointment(objs);
+      });
   }, [])
-
+  // console.log("this is appt", appointment.apptDate.seconds.toDate)
   return (
     <View style={styles.container}>
        <View style={styles.upcomingWrapper}>
@@ -39,7 +32,7 @@ function HomeScreen() {
             {appointment.map((obj) => (
               <Appointment text={obj.name} date={convertToDate(obj.apptDate.seconds)} />
             ))}
-      </View>
+          </View>
       </View>
     </View>
   );
