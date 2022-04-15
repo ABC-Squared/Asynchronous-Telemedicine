@@ -1,11 +1,121 @@
-import { StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import { Alert, StyleSheet, Text, TextInput, View, TouchableOpacity} from 'react-native';
 import React from 'react';
+import { useState } from 'react';
+import { registration } from '../firebase/firebaseMethods';
 
 const RegisterScreen = ({navigation}) => {
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [lastName, setlastName] = useState('');
+  const [firstName, setfirstName] = useState('');
+  const [address, setAddress] = useState('');
+  const [medications, setMedications] = useState('');
+  const [immunizations, setImmunations] = useState('');
+  const [doctorCode, setDoctorCode] = useState('');
+
+  const handlePress = () => {
+    if (!email || !password) {
+      Alert.alert('Email/Password field is required.');
+    }
+
+    registration(email, password, lastName, firstName, address, medications, immunizations, doctorCode);
+    setEmail('');
+    setPassword('');
+    setfirstName('');
+    setlastName('');
+    setAddress('');
+    setMedications('');
+    setImmunations('');
+    setDoctorCode('');
+  };
     
     return(
-        <View style={styles.loginContainer}>   
-          <Text style={{fontSize: 50}}>RegisterScreen</Text>
+        <View style={styles.loginContainer}> 
+          {/* First Name field */}
+          <TextInput 
+            autoCapitalize='none' 
+            placeholder="First Name" 
+            style={styles.loginTextInput} 
+            placeholderTextColor="gray" 
+            onChangeText={(firstName) => setfirstName(firstName)}
+            />
+          {/* Last Name field */}
+          <TextInput 
+            autoCapitalize='none' 
+            placeholder="Last Name" 
+            style={styles.loginTextInput} 
+            secureTextEntry={false} 
+            placeholderTextColor="gray" 
+            onChangeText={(lastName) => setlastName(lastName)}
+            />  
+          {/* Address field */}
+          <TextInput 
+            autoCapitalize='none' 
+            placeholder="Address" 
+            style={styles.loginTextInput} 
+            placeholderTextColor="gray" 
+            onChangeText={(address) => setAddress(address)}
+            />
+
+          {/* Username field */}
+          <TextInput 
+            autoCapitalize='none' 
+            placeholder="Username/Email" 
+            style={styles.loginTextInput}
+            secureTextEntry={false} 
+            placeholderTextColor="gray" 
+            onChangeText={(email) => setEmail(email)}
+            />
+
+          {/* Password field */}
+          <TextInput 
+            autoCapitalize='none' 
+            placeholder="Password" style={styles.loginTextInput} 
+            placeholderTextColor="gray" 
+            secureTextEntry={true} 
+            onChangeText={(password) => setPassword(password)}
+            />
+
+          {/* Medications field */}
+          <TextInput 
+            autoCapitalize='none' 
+            placeholder="Medications" 
+            style={styles.loginTextInput} 
+            secureTextEntry={false} 
+            placeholderTextColor="gray" 
+            onChangeText={(medications) => setMedications(medications)}
+            />
+          {/* Immunizations field */}
+          <TextInput 
+            autoCapitalize='none' 
+            placeholder="Immunizations" 
+            style={styles.loginTextInput} 
+            secureTextEntry={false} 
+            placeholderTextColor="gray"
+            onChangeText={(immunizations) => setImmunations(immunizations)}
+            />
+          
+          {/* Doctor Code field */}
+          <TextInput 
+            autoCapitalize='none' 
+            placeholder="Doctor Code" 
+            style={styles.loginTextInput} 
+            placeholderTextColor="gray"
+            secureTextEntry={false}  
+            onChangeText={(doctorCode) => setPassword(setDoctorCode)}
+            />
+
+          {/* Login Button */}
+          <TouchableOpacity 
+            style={styles.loginButtonStyle} 
+            onPress={handlePress}
+            >
+
+            <Text style={styles.loginButtonText} >
+            Register
+            </Text>
+          </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Text style={{color:'#51A0D5', fontSize:20}}>
                 Back
