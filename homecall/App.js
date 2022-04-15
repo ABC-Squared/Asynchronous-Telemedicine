@@ -1,12 +1,14 @@
 import { NavigationContainer } from '@react-navigation/native';
 import BottomNavigator from './navigation/TabNavigation';
-import { LoginStackNavigator, MainStackNavigator } from './navigation/StackNavigation';
-import { useState, useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { db } from './firebase/firebase';
+import { LoginStackNavigator } from './navigation/StackNavigation';
+import { useState } from 'react';
+import { LogBox } from 'react-native';
 import { auth } from './firebase/firebase';
 
+
 export default function App() {
+  LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+  LogBox.ignoreAllLogs();//Ignore all log notifications
 
   const [signedIn, setSignedIn] = useState(false);
   auth.onAuthStateChanged((user) => {

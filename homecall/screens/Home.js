@@ -13,7 +13,7 @@ function HomeScreen() {
     normalDate.setSeconds(seconds);
     return normalDate.toDateString()
   }
-  
+
   useEffect(() => {
     const ref = firebase.firestore().collection('appointments');
 
@@ -25,8 +25,6 @@ function HomeScreen() {
         const matchedDocs = querySnapshot.size
         if (matchedDocs) {
           querySnapshot.docs.forEach(doc => {
-            // setAppointment(querySnapshot.docs.map(doc => doc.data()))
-            // const matchedDocs = querySnapshot.size
             setAppointment(appointment => [...appointment, doc.data()]);
           })
         } else {
