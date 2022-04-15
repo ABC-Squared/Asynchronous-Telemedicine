@@ -5,7 +5,6 @@ import firebase from 'firebase/compat/app';
 
 
 function HomeScreen() {
-
   const [appointment, setAppointment] = useState([]);
   let currentUserUID = firebase.auth().currentUser.uid;
 

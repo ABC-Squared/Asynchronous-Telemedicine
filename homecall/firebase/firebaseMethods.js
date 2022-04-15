@@ -57,8 +57,10 @@ export async function postAppointment(appointmentName) {
   })
   .then((docRef) => {
     console.log("Document written with ID: ", docRef.id);
+    Alert.alert('Appointment successfully booked!');
   })
   .catch((error) => {
     console.error("Error adding document: ", error);
+    Alert.alert('There was an error:', error.message);
   });
 }
