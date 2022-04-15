@@ -114,15 +114,19 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 1 },
         shadowOpacity: 0.2,
         shadowRadius: 2,  
-        elevation: 3
+        elevation: 3,
+        marginTop: 75,
+        marginBottom: 50
     },
-
     nextButtonStyle:{
       margin: 10,
-      width: 250,
+      width: 150,
       backgroundColor:"#FF0000",
       justifyContent:'center',
       alignSelf: 'center',
+      borderRadius: 10,
+      shadowColor: '#000',
+        shadowOffset: { width: 0, height: 1 },
     }
   });
 

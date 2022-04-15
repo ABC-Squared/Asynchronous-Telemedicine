@@ -3,12 +3,12 @@ import {Text, TouchableOpacity, StyleSheet, View} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { postAppointment } from '../firebase/firebaseMethods';
 
-const UploadScreen = ({route}) => {
+const UploadScreen = ({route, navigation}) => {
   const appointmentName = route.params;
 
   const handlePress = () => {
-    console.log("appointment name", appointmentName)
     postAppointment(appointmentName.appointmentName);
+    navigation.navigate('Home')
   };
   
   return (
@@ -26,9 +26,11 @@ const UploadScreen = ({route}) => {
             </Text>
         </TouchableOpacity>
 
+        <View style={styles.uploadbbtn}>
         <TouchableOpacity onPress={handlePress} style={styles.uploadButton}>
           <Icon color="white" size={50} name="arrow-up" />
         </TouchableOpacity>
+        </View>
         </View>
         
   );
@@ -118,11 +120,16 @@ const styles = StyleSheet.create({
       marginTop: 20,
       width: 100,
       height: 100,
-      justifyContent: 'center',
-      alignItems: 'center',
       padding: 10,
       borderRadius: 100,
       backgroundColor: '#F75050',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    uploadbbtn: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginTop: 200
     }
   });
 
